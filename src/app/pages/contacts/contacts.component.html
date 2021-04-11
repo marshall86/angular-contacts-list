@@ -1,0 +1,23 @@
+<ng-template #loading>
+  <mat-spinner></mat-spinner>
+</ng-template>
+<div class="contacts-list-container">
+  <mat-card *ngIf="contacts$ | async as contacts; else loading">
+    <mat-card-title>Contact List</mat-card-title>
+    <mat-card-subtitle>You have {{contacts.length}} contacts</mat-card-subtitle>
+    <mat-card-content>
+      <app-list [contacts]="contacts"></app-list>
+    </mat-card-content>
+
+    <div class="add-contact-container">
+      <form [formGroup]="form" (ngSubmit)="addContact()" class="add-contact-form">
+        <mat-form-field>
+          <mat-label>New Contact</mat-label>
+          <input placeholder="New Contact" matInput formControlName="newContact" required>
+        </mat-form-field>
+
+        <button mat-icon-button><span class="material-icons">add_circle_outline</span></button>
+      </form>
+    </div>
+  </mat-card>
+</div>

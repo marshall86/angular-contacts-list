@@ -1,0 +1,68 @@
+<ng-container class="contacts-list-container">
+  <mat-list>
+    <mat-list-item>
+      <img matListAvatar [src]="contact?.avatar" alt="{{contact?.first_name}} {{contact?.last_name}}"
+        title="{{contact?.first_name}} {{contact?.last_name}}">
+
+      <h3 matLine> {{contact?.first_name}} {{contact?.last_name}}</h3>
+    </mat-list-item>
+  </mat-list>
+
+  <div class="addresses-container">
+
+    <form [formGroup]="form">
+
+      <div formArrayName="addresses" *ngFor="let a of addresses.controls; index as i; trackBy: identify">
+
+        <div [formGroupName]="i">
+          <h1><b>Address #{{a.value.id}}</b></h1>
+
+          <div class="col-xs4-12 col-md-12 col-lg-12">
+            <div class="delete-address">
+              <mat-form-field>
+                <mat-label>Street 1</mat-label>
+                <input placeholder="Street 1" formControlName="street1" matInput required name="street1"
+                  [value]="a.value.street1">
+                <mat-icon matSuffix> contacts</mat-icon>
+              </mat-form-field>
+              <span class="material-icons" (click)="deleteAddress(i, a.value.id)">clear</span>
+            </div>
+          </div>
+
+          <div class="col-xs4-12 col-md-12 col-lg-12">
+            <mat-form-field>
+              <mat-label>Street 2</mat-label>
+              <input placeholder="Street 2" formControlName="street2" matInput name="street2" [value]="a.value.street2">
+            </mat-form-field>
+          </div>
+
+          <div class="col-xs4-12 col-md-12 col-lg-12">
+            <mat-form-field>
+              <mat-label>Town</mat-label>
+              <input placeholder="Town" formControlName="town" matInput required name="town" [value]="a.value.town">
+            </mat-form-field>
+          </div>
+
+          <div class="col-xs4-12 col-md-12 col-lg-12">
+            <mat-form-field>
+              <mat-label>Country</mat-label>
+              <mat-select name="country" formControlName="country" [value]="a.value.countryName" required>
+                <mat-option [value]="c.iso2" *ngFor="let c of countries; trackBy: identify">{{c.name}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="col-xs4-12 col-md-12 col-lg-12">
+        <button mat-button color="basic" (click)="createNewAddress()"><span class="material-icons">add</span> Add
+          Address</button>
+        <button mat-button color="primary" (click)="onSubmit()"><span class="material-icons">save</span> Save</button>
+      </div>
+
+    </form>
+
+  </div>
+
+</ng-container>
