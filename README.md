@@ -1,4 +1,18 @@
-# NgMaterialContacts
+# Angular Material Contacts List
+
+This is a simple project with Angular Material.
+The website will show an home page with a static content, the contacts list and the contact details with a dynamic form.
+
+The contacts list is in the contacts.json file in the src folder.
+
+For this project I used json-server as a mock REST api so before starting the project with npm start or ng serve is recommended to start the server with npm start json:server
+
+Some unit tests are implemented.
+
+Todo:
+
+Understand how to add a new address with the mock api, I didn't manage unfortunately
+Integrate NGRX
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.5.
 
